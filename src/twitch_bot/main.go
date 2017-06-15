@@ -6,7 +6,7 @@ import (
 	//	"os"
 	"bufio"
 	"net/textproto"
-	"time"
+  "time"
 )
 
 type Bot struct {
@@ -16,6 +16,15 @@ type Bot struct {
 	channel string
 	conn    net.Conn
 }
+
+type Message struct {
+  raw string
+  channel string
+  user string
+}
+
+
+func NewMessage(
 
 func (bot *Bot) ConsoleInput() {
 	// _ := bufio.NewReader(os.Stdin)
@@ -43,6 +52,8 @@ func (bot *Bot) Chat(message string) {
 
 
 
+
+
 func ParseMessage(message string) {
 
 
@@ -55,7 +66,7 @@ func main() {
 		server:  "irc.twitch.tv",
 		port:    "6667",
 		nick:    "bad_hombres_bot",
-		channel: "bad_hombres",
+		channel: "lck1",
 		conn:    nil,
 	}
 
@@ -67,6 +78,11 @@ func main() {
 	bot.Chat(fmt.Sprintf("PASS %s", pass))
 	bot.Chat(fmt.Sprintf("NICK %s", bot.nick))
 	bot.Chat(fmt.Sprintf("JOIN #%s", bot.channel))
+  bot.Chat("CAP REQ :twitch.tv/membership")
+  bot.Chat("CAP REQ :twitch.tv/tags")
+  bot.Chat("CAP REQ :twitch.tv/commands")
+
+
 
 	reader := bufio.NewReader(bot.conn)
 	tp := textproto.NewReader(reader)

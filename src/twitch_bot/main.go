@@ -70,7 +70,7 @@ func main() {
 		conn:    nil,
 	}
 
-	pass := "oauth:30zdoyl8vntrr7p0g2ub3sx3ferb2r"
+	pass := ""
 
 	bot.Connect()
 
